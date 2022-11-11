@@ -1,0 +1,80 @@
+<button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Crear Clients <i class="fas fa-plus" ></i></button>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Nueva Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+             <form [formGroup]="clientsForm" (ngSubmit)="createCliente();">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" style="text-align:start;">
+                    <label for="">Nombres</label>
+                    <input type="text" class="form-control"  required
+                     placeholder="Nombre de la Categoria" formControlName="name">
+
+                  </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group" style="text-align:start;">
+                      <label for="">Apellidos</label>
+                      <input type="text" class="form-control"  required
+                       placeholder="Nombre de la Categoria" formControlName="lastName">
+
+                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group" style="text-align:start;">
+                        <label for="">Cedula de Identidad</label>
+                        <input type="text" class="form-control"  required
+                         placeholder="Nombre de la Categoria" formControlName="ci">
+
+                      </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group" style="text-align:start;">
+                          <label for="">Direccion</label>
+                          <input type="text" class="form-control"  required
+                           placeholder="Nombre de la Categoria" formControlName="address">
+
+                        </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group" style="text-align:start;">
+                            <label for="">Telefono</label>
+                            <input type="text" class="form-control"  required
+                             placeholder="Nombre de la Categoria" formControlName="phone">
+
+                          </div>
+                          </div>
+                </div>
+
+
+
+              <br>
+              <button type="submit" class="btn btn-outline-success btn-lg btn-block "> Crear </button>
+            </form>
+</div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
