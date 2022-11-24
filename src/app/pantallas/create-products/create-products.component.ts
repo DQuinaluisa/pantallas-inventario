@@ -17,7 +17,7 @@ export class CreateProductsComponent implements OnInit {
   productForm : any = FormGroup;
   constructor(
     private api : ApiService,
-    private route : Router
+    private router : Router,
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class CreateProductsComponent implements OnInit {
         timer: 1500
       })
 
-      this.route.navigate([""]);
+      this.router.navigate(['']);
 
     },
     error => {

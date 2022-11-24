@@ -1,16 +1,19 @@
-
+<app-menu></app-menu>
 <br>
-<br><br>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <h1>Lista de Productos</h1>
           </div>
-          <div class="col-md-6"  style="text-align: end;">
+          <div class="col-md-8"  style="text-align: end;">
+
             <app-create-products></app-create-products>
-            <button style="margin: 2%;" class="btn btn-success" (click)="actualizarLista()" >Refrescar</button>
+            <app-reports style="margin: 2%;"></app-reports>
+            <app-sales ></app-sales>
+            <button style="margin: 2%;" class="btn btn-outline-info" (click)="actualizarLista()" ><i class="fa-solid fa-rotate-left"></i></button>
           </div>
         </div>
 
@@ -44,8 +47,8 @@
               <tr>
                 <th class="text-center" style="color: white;" scope="col">#</th>
                 <th class="text-center" style="color: white;" scope="col">Categorias</th>
-                <th class="text-center" style="color: white;" scope="col">Nombre del Producto</th>
-                <th class="text-center" style="color: white;" scope="col">Unidades Disponibles</th>
+                <th class="text-center" style="color: white;" scope="col">Producto</th>
+                <th class="text-center" style="color: white;" scope="col">Unidades</th>
                 <th class="text-center" style="color: white;" scope="col">Descripcion del Producto</th>
                 <th class="text-center" style="color: white;" colspan=3></th>
               </tr>
@@ -55,23 +58,30 @@
 
             <tbody style="background-color: white;">
 
-              <tr  *ngFor="let item of products, let i = index">
-                <th scope="row">{{ i+1 }}</th>
+              <tr  *ngFor="let item of products  | paginate: { itemsPerPage: 5, currentPage: page }">
+                <th scope="row">{{ item.id }}</th>
                 <td class="text-center" >{{ item.categoriesName }}</td>
                 <td class="text-center" >{{ item.productsName }}</td>
                 <td class="text-center">{{ item.productsStock }}</td>
                 <td class="text-center">{{ item.productsDescription }}</td>
 
                 <td>
-                  <a class="btn btn-danger" href="">Eliminar</a>
+                  <button class="btn btn-danger"  (click)="deleteProduct(item.id)" >Eliminar</button>
                 </td>
                 <td>
-                  <a class="btn btn-warning" href="">Editar</a>
+                  <button class="btn btn-warning"  (click)="selectProduct(item.id)" >Editar</button>
                 </td>
               </tr>
 
             </tbody>
           </table>
+        </div>
+        <div class="text-center">
+          <pagination-controls (pageChange)="page = $event"
+          previousLabel="Previous"
+          nextLabel="Next"
+
+          ></pagination-controls>
         </div>
 
 

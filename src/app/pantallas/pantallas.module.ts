@@ -11,7 +11,14 @@ import { EditCategoriesComponent } from './edit-categories/edit-categories.compo
 import { CreateClientsComponent } from './create-clients/create-clients.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ListClientsComponent } from './list-clients/list-clients.component';
+import { EditClientsComponent } from './edit-clients/edit-clients.component';
+import { ReportsComponent } from './reports/reports.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { SalesComponent } from './sales/sales.component';
+import { ExitProductsComponent } from './exit-products/exit-products.component';
+import { MenuComponent } from './menu/menu.component';
+import { SalesProductsComponent } from './sales-products/sales-products.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +28,22 @@ import { HttpClientModule } from '@angular/common/http';
     CreateCategoriesComponent,
     ListCategoriesComponent,
     EditCategoriesComponent,
-    CreateClientsComponent
+    CreateClientsComponent,
+    ListClientsComponent,
+    EditClientsComponent,
+    ReportsComponent,
+    SalesComponent,
+    ExitProductsComponent,
+    MenuComponent,
+    SalesProductsComponent
   ],
   imports: [
     CommonModule,
     PantallasRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class PantallasModule { }

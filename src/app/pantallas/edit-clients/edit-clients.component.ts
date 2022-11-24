@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/Server/api.service';
 import  Swal  from 'sweetalert2';
-
 @Component({
-  selector: 'app-edit-categories',
-  templateUrl: './edit-categories.component.html',
-  styleUrls: ['./edit-categories.component.css']
+  selector: 'app-edit-clients',
+  templateUrl: './edit-clients.component.html',
+  styleUrls: ['./edit-clients.component.css']
 })
-export class EditCategoriesComponent implements OnInit {
+export class EditClientsComponent implements OnInit {
 
   id : any
-  categoriesName : any
-  categories : any
+  name : any
+  lastName : any
+  ci : any
+  address : any
+  phone : any
 
+  clients : any
   constructor(
     private api : ApiService,
     private router : Router,
@@ -21,30 +24,28 @@ export class EditCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.activeParams.params.subscribe( params => {
+    this.activeParams.params.subscribe((params : any) => {
       this.id = params['id']
-      console.log(this.id)
-      this.api.getCategoriesById(this.id).subscribe((res) => {
-        this.categories = res
-        console.log(this.categories)
+      console.log(params)
+      this.api.getClientsById(this.id).subscribe((res : any) => {
+        this.clients = res['data']
+        console.log(this.clients)
       })
     })
   }
 
-  updateCategory()
-  {
-    this.api.updateCategories(this.id, this.categories).subscribe((data : any) =>
-    {
+  updateClientes () {
+    this.api.updateClients(this.id, this.clients).subscribe((data : any) => {
+      console.log(data);
       Swal.fire({
         position : 'center',
         icon : 'warning',
-        title : 'Categoria Actualizado con Exito',
+        title : 'Cliente Actualizado con Exito',
         showConfirmButton : false,
         timer: 1500
       });
 
-      this.router.navigate(['list-categories']);
+      this.router.navigate(['list-client']);
     }, error => {
       Swal.fire({
 
@@ -53,8 +54,7 @@ export class EditCategoriesComponent implements OnInit {
         text : 'No se pudo actualizar '
       })
       console.log(error);
-    }
-    )}
-
+    })
+  }
 
 }
