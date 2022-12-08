@@ -15,6 +15,7 @@ export class ListProductsComponent implements OnInit {
   products : any;
   product = new Product();
   spinner = true;
+
   page : any;
   constructor(
     private api : ApiService,
@@ -29,6 +30,8 @@ export class ListProductsComponent implements OnInit {
     })
 
   }
+
+
 
   selectProduct(id : string){
     this.router.navigate(["/edit-products/", id])

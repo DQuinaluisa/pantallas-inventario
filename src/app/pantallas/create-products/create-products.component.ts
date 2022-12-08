@@ -31,6 +31,7 @@ export class CreateProductsComponent implements OnInit {
       productsDescription : new FormControl(null, Validators.required),
       category_id : new FormControl(null, Validators.required)
     });
+
   }
 
   createProduct()

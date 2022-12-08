@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PantallasComponent } from './pantallas/pantallas.component';
+import { TokenGuard } from './token.guard';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { PantallasComponent } from './pantallas/pantallas.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TokenGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

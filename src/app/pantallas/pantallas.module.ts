@@ -19,6 +19,8 @@ import { SalesComponent } from './sales/sales.component';
 import { ExitProductsComponent } from './exit-products/exit-products.component';
 import { MenuComponent } from './menu/menu.component';
 import { SalesProductsComponent } from './sales-products/sales-products.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { SalesProductsComponent } from './sales-products/sales-products.componen
     SalesComponent,
     ExitProductsComponent,
     MenuComponent,
-    SalesProductsComponent
+    SalesProductsComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
