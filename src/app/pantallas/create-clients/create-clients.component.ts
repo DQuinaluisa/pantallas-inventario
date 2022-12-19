@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
+import { min } from 'rxjs';
 import { ApiService } from 'src/app/Server/api.service';
 import  Swal  from 'sweetalert2';
 @Component({
@@ -10,7 +11,7 @@ import  Swal  from 'sweetalert2';
 export class CreateClientsComponent implements OnInit {
 
   clientsForm : any = FormGroup;
-
+  submitted = false;
   constructor(
     private api : ApiService
   ) { }
@@ -19,18 +20,27 @@ export class CreateClientsComponent implements OnInit {
     this.clientsForm = new FormGroup({
       name : new FormControl('', Validators.required),
       lastName : new FormControl('', Validators.required),
-      ci : new FormControl('', Validators.required),
+      ci : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       address : new FormControl('', Validators.required),
       phone : new FormControl('', Validators.required),
     });
   }
 
+  get f() { return this.clientsForm.controls; }
+
   createCliente()
   {
+    this.submitted = true;
     const form = this.clientsForm;
+    if (this.clientsForm.invalid) {
+      return;
+  }
+
+
 
     this.api.createClients(form.value.name, form.value.lastName, form.value.ci, form.value.address, form.value.phone)
     .subscribe((data) => {
+
       this.clientsForm = new FormGroup({
         name : new FormControl(null),
         lastName : new FormControl(null),
@@ -49,6 +59,7 @@ export class CreateClientsComponent implements OnInit {
     },
     error => {
       console.log(error);
+
       Swal.fire({
 
         icon : 'error',

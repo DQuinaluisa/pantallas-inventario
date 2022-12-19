@@ -1,4 +1,4 @@
-<button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Crear Clients <i class="fas fa-plus" ></i></button>
+<button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Crear Cliente <i class="fas fa-plus" ></i></button>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -6,7 +6,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear Nueva Categoria</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,26 +21,30 @@
                   <div class="form-group" style="text-align:start;">
                     <label for="">Nombres</label>
                     <input type="text" class="form-control"  required
-                     placeholder="Nombre de la Categoria" formControlName="name">
-
+                     placeholder="Nombre de la Categoria" formControlName="name" name="name" [ngClass]="{ 'is-invalid': submitted && f.ci.errors }" >
+                     <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">Este campo es obligatorio</div>
                   </div>
                   </div>
-
+                </div>
                   <div class="col-md-6">
                     <div class="form-group" style="text-align:start;">
                       <label for="">Apellidos</label>
                       <input type="text" class="form-control"  required
-                       placeholder="Nombre de la Categoria" formControlName="lastName">
-
+                       placeholder="Nombre de la Categoria" formControlName="lastName" name="lastName" [ngClass]="{ 'is-invalid': submitted && f.ci.errors }" >
+                       <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Este campo es obligatorio</div>
                     </div>
                     </div>
-
+                  </div>
                     <div class="col-md-6">
                       <div class="form-group" style="text-align:start;">
                         <label for="">Cedula de Identidad</label>
                         <input type="text" class="form-control"  required
-                         placeholder="Nombre de la Categoria" formControlName="ci">
-
+                         placeholder="Nombre de la Categoria" formControlName="ci" name="ci"  [ngClass]="{ 'is-invalid': submitted && f.ci.errors }" >
+                         <div *ngIf="submitted && f.ci.errors" class="invalid-feedback">
+                          <div *ngIf="f.ci.errors.required">Revise su numero de Cedula</div>
+                      </div>
                       </div>
                       </div>
 
@@ -48,19 +52,23 @@
                         <div class="form-group" style="text-align:start;">
                           <label for="">Direccion</label>
                           <input type="text" class="form-control"  required
-                           placeholder="Nombre de la Categoria" formControlName="address">
-
+                           placeholder="Nombre de la Categoria" formControlName="address" name="address" [ngClass]="{ 'is-invalid': submitted && f.ci.errors }" >
+                           <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                            <div *ngIf="f.address.errors.required">Este campo es obligatorio</div>
                         </div>
                         </div>
+                      </div>
 
                         <div class="col-md-6">
                           <div class="form-group" style="text-align:start;">
                             <label for="">Telefono</label>
                             <input type="text" class="form-control"  required
-                             placeholder="Nombre de la Categoria" formControlName="phone">
-
+                             placeholder="Nombre de la Categoria" formControlName="phone" name="phone" [ngClass]="{ 'is-invalid': submitted && f.ci.errors }" >
+                             <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                              <div *ngIf="f.phone.errors.required">Este campo es obligatorio</div>
                           </div>
                           </div>
+                        </div>
                 </div>
 
 
