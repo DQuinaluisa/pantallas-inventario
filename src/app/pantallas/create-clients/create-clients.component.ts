@@ -8,19 +8,22 @@ import  Swal  from 'sweetalert2';
   templateUrl: './create-clients.component.html',
   styleUrls: ['./create-clients.component.css']
 })
+
 export class CreateClientsComponent implements OnInit {
 
   clientsForm : any = FormGroup;
   submitted = false;
+  ci : any
   constructor(
-    private api : ApiService
+    private api : ApiService,
+
   ) { }
 
   ngOnInit(): void {
     this.clientsForm = new FormGroup({
       name : new FormControl('', Validators.required),
       lastName : new FormControl('', Validators.required),
-      ci : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      // ci : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       address : new FormControl('', Validators.required),
       phone : new FormControl('', Validators.required),
     });
@@ -38,13 +41,13 @@ export class CreateClientsComponent implements OnInit {
 
 
 
-    this.api.createClients(form.value.name, form.value.lastName, form.value.ci, form.value.address, form.value.phone)
+    this.api.createClients(form.value.name, form.value.lastName, this.ci, form.value.address, form.value.phone)
     .subscribe((data) => {
 
       this.clientsForm = new FormGroup({
         name : new FormControl(null),
         lastName : new FormControl(null),
-        ci : new FormControl(null),
+        // ci : new FormControl(null),
         address : new FormControl(null),
         phone : new FormControl(null),
       })
@@ -55,11 +58,11 @@ export class CreateClientsComponent implements OnInit {
         showConfirmButton : false,
         timer: 1500
       })
-
+      console.log("Creado")
     },
     error => {
       console.log(error);
-
+      console.log("no se puede")
       Swal.fire({
 
         icon : 'error',
@@ -69,6 +72,54 @@ export class CreateClientsComponent implements OnInit {
     });
 
   }
+
+
+  public validador : any; //esta variable se la puede usar para realizar la validacion en el html del component
+
+validadorDeCedula(ci: String) {
+  let cedulaCorrecta = false;
+
+  if (ci.length == 10)
+  {
+      let tercerDigito = parseInt(ci.substring(2, 3));
+      if (tercerDigito < 6) {
+
+          // El ultimo digito se lo considera dígito verificador
+          let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+          let verificador = parseInt(ci.substring(9, 10));
+          let suma:number = 0;
+          let digito:number = 0;
+          for (let i = 0; i < (ci.length - 1); i++) {
+              digito = parseInt(ci.substring(i, i + 1)) * coefValCedula[i];
+              suma += ((parseInt((digito % 10)+'') + (parseInt((digito / 10)+''))));
+        //      console.log(suma+" suma"+coefValCedula[i]);
+          }
+
+          suma= Math.round(suma);
+
+        //  console.log(verificador);
+        //  console.log(suma);
+        //  console.log(digito);
+
+          if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10)== verificador)) {
+              cedulaCorrecta = true;
+          } else if ((10 - (Math.round(suma % 10))) == verificador) {
+              cedulaCorrecta = true;
+          } else {
+              cedulaCorrecta = false;
+          }
+      } else {
+          cedulaCorrecta = false;
+      }
+  } else {
+      cedulaCorrecta = false;
+  }
+
+
+this.validador= cedulaCorrecta;
+
+
+}
 
 
 }

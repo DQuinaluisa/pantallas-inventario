@@ -44,9 +44,13 @@
                 <div class="col-md-6">
                   <div class="form-group" style="text-align:start;">
                     <label for="">Cedula de Identidad</label>
-                    <input type="text" class="form-control"  required
-                     placeholder="Nombre de la Categoria"  [ngModelOptions]="{standalone: true}" [(ngModel)]="clients.ci">
-
+                    <!-- <input type="text" class="form-control"  required
+                     placeholder="Nombre de la Categoria"  [ngModelOptions]="{standalone: true}" [(ngModel)]="clients.ci"> -->
+                     <input type="text" value=""
+                      class="form-control"
+                      placeholder="Ingrese su Cedula"
+                       [(ngModel)]="clients.ci" [ngModelOptions]="{standalone: true}"  (change)="validadorDeCedula(ci)" maxlength="10">
+                      <small *ngIf="!validador" class="text-danger">Cedula Invalida</small>
                   </div>
                   </div>
 
