@@ -55,7 +55,7 @@ export class EditProductsComponent implements OnInit {
         timer: 1500
       });
 
-      this.router.navigate(['']);
+      this.router.navigate(['list-products']);
     }, error => {
       Swal.fire({
 

@@ -19,7 +19,7 @@ export class ReportsComponent implements OnInit {
   ngOnInit(): void {
     this.api.getReports().subscribe((res : any) => {
       this.reports = res['data'];
-      console.log(this.reports)
+      console.log(this.reports, 'hola')
     })
   }
 
