@@ -50,8 +50,8 @@
                       <input type="text" value=""
                       class="form-control"  required
                       placeholder="Ingrese su Cedula"
-                      name="ci" [(ngModel)]="ci" [ngModelOptions]="{standalone: true}"  (change)="validadorDeCedula(ci)" maxlength="10">
-                      <small *ngIf="!validador" class="text-danger">Cedula Invalida</small>
+                      name="ci" [(ngModel)]="ci" [ngModelOptions]="{standalone: true}"   maxlength="10">
+                      <!-- <small *ngIf="!validador" class="text-danger">Cedula Invalida</small> -->
                       </div>
                       </div>
 

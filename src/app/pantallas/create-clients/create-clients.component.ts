@@ -36,61 +36,29 @@ export class CreateClientsComponent implements OnInit {
     this.submitted = true;
     const form = this.clientsForm;
     if (this.clientsForm.invalid) {
-      return;
-  }
-
-
-
-    this.api.createClients(form.value.name, form.value.lastName, this.ci, form.value.address, form.value.phone)
-    .subscribe((data) => {
-
-      this.clientsForm = new FormGroup({
-        name : new FormControl(null),
-        lastName : new FormControl(null),
-        // ci : new FormControl(null),
-        address : new FormControl(null),
-        phone : new FormControl(null),
-      })
-      Swal.fire({
-        position : 'center',
-        icon : 'success',
-        title : 'Cliente Creado con Exito',
-        showConfirmButton : false,
-        timer: 1500
-      })
-      console.log("Creado")
-    },
-    error => {
-      console.log(error);
-      console.log("no se puede")
       Swal.fire({
 
         icon : 'error',
         title : 'Ooops',
-        text : 'No se pudo crear '
+        text : 'Llene todos los campos'
       })
-    });
-
+      return;
   }
 
-
-  public validador : any; //esta variable se la puede usar para realizar la validacion en el html del component
-
-validadorDeCedula(ci: String) {
   let cedulaCorrecta = false;
 
-  if (ci.length == 10)
+  if (this.ci.length == 10)
   {
-      let tercerDigito = parseInt(ci.substring(2, 3));
+      let tercerDigito = parseInt(this.ci.substring(2, 3));
       if (tercerDigito < 6) {
 
           // El ultimo digito se lo considera dígito verificador
           let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];
-          let verificador = parseInt(ci.substring(9, 10));
+          let verificador = parseInt(this.ci.substring(9, 10));
           let suma:number = 0;
           let digito:number = 0;
-          for (let i = 0; i < (ci.length - 1); i++) {
-              digito = parseInt(ci.substring(i, i + 1)) * coefValCedula[i];
+          for (let i = 0; i < (this.ci.length - 1); i++) {
+              digito = parseInt(this.ci.substring(i, i + 1)) * coefValCedula[i];
               suma += ((parseInt((digito % 10)+'') + (parseInt((digito / 10)+''))));
         //      console.log(suma+" suma"+coefValCedula[i]);
           }
@@ -105,18 +73,75 @@ validadorDeCedula(ci: String) {
               cedulaCorrecta = true;
           } else if ((10 - (Math.round(suma % 10))) == verificador) {
               cedulaCorrecta = true;
+              this.api.createClients(form.value.name, form.value.lastName, this.ci, form.value.address, form.value.phone)
+              .subscribe((data) => {
+
+                this.clientsForm = new FormGroup({
+                  name : new FormControl(null),
+                  lastName : new FormControl(null),
+                  // ci : new FormControl(null),
+                  address : new FormControl(null),
+                  phone : new FormControl(null),
+                })
+                Swal.fire({
+                  position : 'center',
+                  icon : 'success',
+                  title : 'Cliente Creado con Exito',
+                  showConfirmButton : false,
+                  timer: 1500
+                })
+                console.log("Creado")
+              },
+              error => {
+                console.log(error);
+                console.log("no se puede")
+                Swal.fire({
+
+                  icon : 'error',
+                  title : 'Ooops',
+                  text : 'No se pudo crear '
+                })
+              });
           } else {
               cedulaCorrecta = false;
+              Swal.fire({
+
+                icon : 'error',
+                title : 'Ooops',
+                text : 'Cedula Incorrecta '
+              })
           }
       } else {
           cedulaCorrecta = false;
+          Swal.fire({
+
+            icon : 'error',
+            title : 'Ooops',
+            text : 'Cedula Incorrecta '
+          })
       }
   } else {
       cedulaCorrecta = false;
+      Swal.fire({
+
+        icon : 'error',
+        title : 'Ooops',
+        text : 'Cedula Incorrecta '
+      })
   }
 
 
 this.validador= cedulaCorrecta;
+
+
+
+  }
+
+
+  public validador : any; //esta variable se la puede usar para realizar la validacion en el html del component
+
+validadorDeCedula() {
+
 
 
 }
