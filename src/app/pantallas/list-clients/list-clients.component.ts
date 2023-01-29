@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/client';
 import { ApiService } from 'src/app/Server/api.service';
-
+import  Swal  from 'sweetalert2';
 @Component({
   selector: 'app-list-clients',
   templateUrl: './list-clients.component.html',
@@ -31,5 +31,8 @@ export class ListClientsComponent implements OnInit {
     this.router.navigate(["/edit-client/", id])
     console.log(id)
   }
+
+
+
 
 }
