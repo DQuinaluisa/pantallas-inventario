@@ -14,6 +14,8 @@ export class CreateClientsComponent implements OnInit {
   clientsForm : any = FormGroup;
   submitted = false;
   ci : any
+  msg : any
+  validar : any
   constructor(
     private api : ApiService,
 
@@ -73,8 +75,24 @@ export class CreateClientsComponent implements OnInit {
               cedulaCorrecta = true;
           } else if ((10 - (Math.round(suma % 10))) == verificador) {
               cedulaCorrecta = true;
-              this.api.createClients(form.value.name, form.value.lastName, this.ci, form.value.address, form.value.phone)
-              .subscribe((data) => {
+
+              this.api.getCi(this.ci).subscribe((res : any) => {
+                this.msg = res['msg']
+                this.validar = res['data']
+                if(this.validar != null) {
+                  console.log(this.msg)
+                  Swal.fire({
+
+                    icon : 'error',
+                    title : 'Ooops',
+                    text : this.msg
+                  })
+                }else {
+                  console.log("No existe")
+                  this.api.createClients(form.value.name, form.value.lastName, this.ci, form.value.address, form.value.phone)
+              .subscribe((data : any) => {
+
+
 
                 this.clientsForm = new FormGroup({
                   name : new FormControl(null),
@@ -91,10 +109,12 @@ export class CreateClientsComponent implements OnInit {
                   timer: 1500
                 })
                 console.log("Creado")
+                console.log(data)
               },
               error => {
-                console.log(error);
+                console.log(error)
                 console.log("no se puede")
+
                 Swal.fire({
 
                   icon : 'error',
@@ -102,8 +122,14 @@ export class CreateClientsComponent implements OnInit {
                   text : 'No se pudo crear '
                 })
               });
+                }
+
+              })
+
+
           } else {
               cedulaCorrecta = false;
+
               Swal.fire({
 
                 icon : 'error',

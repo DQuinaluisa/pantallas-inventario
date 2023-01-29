@@ -39,6 +39,19 @@ export class ApiService {
       return this.http.get<Client[]>(`${this.url}/client`, {headers : headers})
     }
 
+    getCi(ci : string): Observable<Object>
+    {
+
+      const headers = new HttpHeaders({
+        'Accept' : 'application/json',
+      });
+
+      const formData = new FormData();
+      formData.append('ci', ci);
+      return this.http.post<Object>(`${this.url}/ci`, formData, {headers : headers})
+    }
+
+
     getReports(): Observable<Object>
     {
       const headers = new HttpHeaders({
