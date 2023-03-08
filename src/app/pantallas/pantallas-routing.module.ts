@@ -7,6 +7,7 @@ import { CreateProductsComponent } from './create-products/create-products.compo
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 import { EditClientsComponent } from './edit-clients/edit-clients.component';
 import { EditProductsComponent } from './edit-products/edit-products.component';
+import { EditSalesComponent } from './edit-sales/edit-sales.component';
 import { ExitProductsComponent } from './exit-products/exit-products.component';
 import { HomeComponent } from './home/home.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
@@ -88,6 +89,10 @@ const routes: Routes = [
     path: 'sales-products',
     component: SalesProductsComponent,
     //canActivate: [TokenGuard]
+  },
+  {
+    path: 'sales-edit/:id',
+    component : EditSalesComponent
   }
 
 ];

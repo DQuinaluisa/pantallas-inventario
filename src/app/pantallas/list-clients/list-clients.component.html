@@ -45,7 +45,7 @@
 
             <tbody style="background-color: white;">
               <tr  *ngFor="let item of clients| paginate: { itemsPerPage: 5, currentPage: page }">
-                <th scope="row">{{ item.id }}</th>
+                <th scope="row"></th>
                 <td class="text-center" >{{ item.name }} {{ item.lastName }}</td>
                 <td class="text-center" >{{ item.ci }}</td>
                 <td class="text-center" >{{ item.phone }}</td>

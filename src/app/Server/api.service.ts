@@ -92,6 +92,14 @@ export class ApiService {
       return this.http.get<Client[]>(`${this.url}/client/${id}`, {headers : headers})
     }
 
+    getSalesById(id : string) : Observable<Object>
+    {
+      const headers = new HttpHeaders({
+        'Accept' : 'application/json',
+      });
+      return this.http.get<Sales[]>(`${this.url}/sales/${id}`, {headers : headers})
+    }
+
     createProduct(productsName: string, productsStock: string, productsDescription: string, category_id: string) : Observable<Object>
     {
       const formData = new FormData();
@@ -175,6 +183,15 @@ export class ApiService {
       return this.http.put<Object[]>(`${this.url}/client/${id}`, data, {headers : headers});
     }
 
+    updateSales(id: string, data : any)
+    {
+      const headers = new HttpHeaders({
+        'Accept' : 'application/json',
+      });
+
+      return this.http.put<Object[]>(`${this.url}/sales/${id}`, data, {headers : headers});
+    }
+
     deleteProducts(id : string): Observable<Object>
     {
       const headers = new HttpHeaders({
@@ -193,6 +210,13 @@ export class ApiService {
       return this.http.delete<Object[]>(`${this.url}/category/${id}`, {headers : headers});
     }
 
+    deleteSales(id : string): Observable<Object>
+    {
+      const headers = new HttpHeaders({
+        'Accept' : 'application/json',
+      });
 
+      return this.http.delete<Object[]>(`${this.url}/sales/${id}`, {headers : headers});
+    }
 
 }

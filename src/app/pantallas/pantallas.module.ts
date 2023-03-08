@@ -21,6 +21,7 @@ import { MenuComponent } from './menu/menu.component';
 import { SalesProductsComponent } from './sales-products/sales-products.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { EditSalesComponent } from './edit-sales/edit-sales.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     MenuComponent,
     SalesProductsComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EditSalesComponent
   ],
   imports: [
     CommonModule,
